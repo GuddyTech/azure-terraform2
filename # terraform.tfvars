@@ -1,0 +1,6 @@
+# terraform.tfvars
+
+username            = "exampleuser"
+role_definition_id  = "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000"
+resource_group_name = "example_resource_group"
+location            = "eastus"

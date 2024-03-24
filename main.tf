@@ -1,6 +1,6 @@
 # main.tf
 
-provider "azurerm" {
+provider["registry.terraform.io/hashicorp/azurerm"] {
   features {}
 }
 

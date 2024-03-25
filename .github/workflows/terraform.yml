@@ -27,6 +27,7 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+          enable-AzPSSession: true
           auth-type: SERVICE_PRINCIPAL
         
       - run: |

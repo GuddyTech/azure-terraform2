@@ -23,6 +23,7 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }} 
+          auth-type: SERVICE_PRINCIPAL
         
       - run: |
           az account show --output none
@@ -32,6 +33,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
+          auth-type: SERVICE_PRINCIPAL
           allow-no-subscriptions: true
           
       - run: |
@@ -42,6 +44,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           allow-no-subscriptions: true
+          auth-type: SERVICE_PRINCIPAL
 
       - name: Terraform Init
         run: terraform init

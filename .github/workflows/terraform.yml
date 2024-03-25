@@ -1,35 +1,25 @@
-name: Terraform
+# File: .github/workflows/workflow.yml
 
-on:
-  push:
-    branches:
-      - main
-      
-jobs:
-  terraform:
+name: Run Azure Login with OIDC
+on: [push]
+
+permissions:
+      id-token: write
+      contents: read
+jobs: 
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Azure login
+        uses: azure/login@v2
         with:
-          terraform_version: 1.0.0
-
-      - name: 'Azure Login'
-        uses: azure/login@v1
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
+      - name: Azure CLI script
+        uses: azure/CLI@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
-          auth-type: SERVICE_PRINCIPAL
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
- 
+          azcliversion: latest
+          inlineScript: |
+            az account show

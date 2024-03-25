@@ -23,6 +23,8 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENTID }}
           tenant-id: ${{ secrets.AZURE_TENANTID }}
           auth-type: SERVICE_PRINCIPAL
+        env:
+          ACTIONS_ALLOW_ID_TOKEN: true
           allow-no-subscriptions: true
           
       - run: |
